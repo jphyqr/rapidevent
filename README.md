@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Data Management UI
 
-## Getting Started
+A responsive single-page application for managing and visualizing tabular data.
 
-First, run the development server:
+## Running Locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technical Decisions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Framework: Next.js 15
+- Offers automatic code splitting and optimization for fast initial load times
+- Ensures consistent performance even with large datasets through efficient component rendering
+- Provides robust TypeScript support out of the box for type safety and better developer experience
 
-## Learn More
+### Component Library: shadcn/ui
+- Offers highly accessible, customizable components based on Radix UI primitives
+- Provides a consistent design system while maintaining full styling control
+- Zero runtime bundle size impact as components are copied into the project
 
-To learn more about Next.js, take a look at the following resources:
+### Form Management: React Hook Form + Zod
+- React Hook Form provides performant form handling with minimal re-renders
+- Zod enables robust TypeScript-first schema validation
+- Combined approach ensures type safety from form submission through data management
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Data Visualization: Recharts
+- React-centric charting library with efficient rendering
+- Smooth updates for real-time data changes
+- Responsive design support built-in
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+app/
+  page.tsx                      # Main SPA page
+  _components/                  # Route-level components
+    data-form/                 # Form submission components
+    data-table/               # Table visualization components
+    data-chart/              # Chart visualization components
+  lib/                        # Utilities and configurations
+    validations.ts           # Zod schemas
+    types.ts                # TypeScript type definitions
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This structure:
+- Co-locates components with their routes for better maintainability
+- Isolates feature-specific components in _components directory
+- Keeps shared utilities and types centralized
