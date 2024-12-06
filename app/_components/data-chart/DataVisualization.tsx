@@ -18,19 +18,9 @@ import {type  SubmissionStats } from '@/lib/actions'
     stats: SubmissionStats
   }
 
-  // Use our themed chart colors
-const CHART_COLORS = [
-    'hsl(var(--chart-1))',
-    'hsl(var(--chart-2))',
-    'hsl(var(--chart-3))',
-    'hsl(var(--chart-4))',
-    'hsl(var(--chart-5))'
-  ]
-  
+
   export default function DataVisualization({ stats }: DataVisualizationProps) {
 
-   
- 
     return (
         <div className="grid gap-4 md:grid-cols-2">
         <Card className="col-span-2">

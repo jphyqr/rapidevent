@@ -1,4 +1,3 @@
-// app/_components/data-table/client.tsx
 'use client'
 
 import {  useEffect, useMemo, useState } from 'react'
@@ -65,16 +64,15 @@ export default function DataTableClient({ initialData }: DataTableProps) {
 
   const [metadata, setMetadata] = useState(initialData.metadata)
   const [sorting, setSorting] = useState<SortingState>([
-    { id: 'updatedAt', desc: true } // Default sort
+    { id: 'updatedAt', desc: true } 
   ])
   const [search, setSearch] = useState('')
-  const debouncedSearch = useDebounce(search, 500) // 500ms delay
+  const debouncedSearch = useDebounce(search, 500) 
 
   const { newSubmissionId, setNewSubmissionId } = useSubmission()
   const [editingRow, setEditingRow] = useState<Submission | null>(null)
   const { toast } = useToast()
-  const [isLoading, setIsLoading] = useState(false)
-
+ 
   // Fetch data when page, pageSize, or search changes
   const fetchData = async () => {
     try {
@@ -90,11 +88,19 @@ export default function DataTableClient({ initialData }: DataTableProps) {
       setData(items)
       setMetadata(metadata)
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to fetch data",
-        variant: "destructive"
-      })
+      if (error instanceof Error) {
+        toast({
+          title: "Error",
+          description: `Failed to fetch data: ${error.message}`,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Unknown Error",
+          description: "An unexpected error occurred.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsRefetching(false)
     }
@@ -105,6 +111,7 @@ export default function DataTableClient({ initialData }: DataTableProps) {
       fetchData()
     }
   }, [page, pageSize, debouncedSearch, sorting])
+
   useEffect(() => {
     if (newSubmissionId) {
       const submission = initialData.items.find(
@@ -126,14 +133,13 @@ export default function DataTableClient({ initialData }: DataTableProps) {
   
         const timer = setTimeout(() => {
           setNewSubmissionId(null)
-          // Remove this fetchData call since we want to maintain the sort
-          // fetchData() 
         }, 3000)
   
         return () => clearTimeout(timer)
       }
     }
   }, [newSubmissionId, initialData.items, pageSize, sorting])
+
   useEffect(() => {
     fetchData()
   }, [page, pageSize, sorting, debouncedSearch])
@@ -243,12 +249,21 @@ export default function DataTableClient({ initialData }: DataTableProps) {
       </Badge>
     </div>
   )}
+
+<div className="relative overflow-x-auto">
         <Table>
         <TableHeader>
  {table.getHeaderGroups().map((headerGroup) => (
    <TableRow key={headerGroup.id}>
-     {headerGroup.headers.map((header) => (
-       <TableHead key={header.id}>
+     {headerGroup.headers.map((header, index) => (
+       <TableHead key={header.id}
+       
+       className={cn(
+        index === 0 && "sticky left-0 bg-background z-10",
+        index === headerGroup.headers.length - 1 &&
+          "sticky right-0 bg-background z-10"
+      )}
+       >
          {header.isPlaceholder
            ? null
            : flexRender(
@@ -261,7 +276,7 @@ export default function DataTableClient({ initialData }: DataTableProps) {
  ))}
 </TableHeader>
           <TableBody>
-            {isLoading ? (
+            {isRefetching ? (
   Array.from({ length: pageSize }).map((_, index) => (
     <TableRow key={index} className="animate-pulse">
       {columns.map((column, cellIndex) => (
@@ -292,8 +307,14 @@ export default function DataTableClient({ initialData }: DataTableProps) {
                       "hover:bg-muted/50"
                     )}
                   >
-                    {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
+                    {row.getVisibleCells().map((cell, index) => (
+                      <TableCell key={cell.id}
+                      className={cn(
+                        index === 0 && "sticky left-0 bg-background z-10",
+                        index === row.getVisibleCells().length - 1 &&
+                          "sticky right-0 bg-background z-10"
+                      )} 
+                      >
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </TableCell>
                     ))}
@@ -309,6 +330,8 @@ export default function DataTableClient({ initialData }: DataTableProps) {
             )}
           </TableBody>
         </Table>
+
+        </div>
       </div>
 
       <div className="flex items-center justify-between space-x-2 py-4">
@@ -321,7 +344,7 @@ export default function DataTableClient({ initialData }: DataTableProps) {
             variant="outline"
             size="sm"
             onClick={() => setPage(page - 1)}
-            disabled={!metadata.hasPreviousPage || isLoading}
+            disabled={!metadata.hasPreviousPage || isRefetching}
           >
             Previous
           </Button>
@@ -332,7 +355,7 @@ export default function DataTableClient({ initialData }: DataTableProps) {
             variant="outline"
             size="sm"
             onClick={() => setPage(page + 1)}
-            disabled={!metadata.hasNextPage || isLoading}
+            disabled={!metadata.hasNextPage || isRefetching}
           >
             Next
           </Button>

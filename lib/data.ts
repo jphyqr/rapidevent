@@ -1,7 +1,5 @@
-// app/lib/data.ts
 import { type Submission, type CustomField } from './types/customField'
 
-// Helper function to generate custom fields
 const generateCustomFields = (): CustomField[] => {
   const fields = [
     { label: 'Company', type: 'text' as const, value: 'Acme Inc' },

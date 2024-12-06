@@ -1,4 +1,3 @@
-// app/_components/data-form/schema.ts
 import { z } from "zod"
 
 const customFieldSchema = z.object({
@@ -9,20 +8,18 @@ const customFieldSchema = z.object({
   isAdvanced: z.boolean(),
   required: z.boolean().optional()
 }).refine((field) => {
-  // Validate value based on type
   if (field.type === 'number') {
     return !isNaN(Number(field.value))
   }
   if (field.type === 'email' && typeof field.value === 'string') {
     return z.string().email().safeParse(field.value).success
   }
-  // Add more type-specific validations as needed
+
   return true
 }, {
   message: "Invalid value for field type",
   path: ["value"]
 }).refine((field) => {
-  // Check required fields have values
   if (field.required && (!field.value || field.value === '')) {
     return false
   }

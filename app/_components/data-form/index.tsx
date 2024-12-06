@@ -1,6 +1,4 @@
-// app/_components/data-form/index.tsx
 'use client'
-
 import React, {  useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -74,7 +72,6 @@ export default function DataForm() {
     try {
       setIsSubmitting(true)
       
-      // Validate custom fields
       const customFieldErrors = validateCustomFields()
       if (customFieldErrors.length > 0) {
         customFieldErrors.forEach(error => {
@@ -88,7 +85,7 @@ export default function DataForm() {
         return
       }
   
-      // Create the new submission with proper structure
+ 
       const newSubmission: Submission = {
         id: crypto.randomUUID(), // This would normally come from backend
         name: values.name,
@@ -104,14 +101,13 @@ export default function DataForm() {
       if(response.success) {
         form.reset()
         
-        // Clear values but keep field structure
+ 
         const clearedCustomFieldValues = customFields.map(field => ({
           ...field,
           value: ''
         }))
         setCustomFields(clearedCustomFieldValues)
-        
-        // Set the new submission ID to trigger optimistic update
+           
         if (response.id)
         setNewSubmissionId(response.id)
         
@@ -251,8 +247,7 @@ export default function DataForm() {
               />
             </div>
 
-{/* Custom Fields Section */}
-{/* Custom Fields Section */}
+
 <div className="rounded-lg border border-border/50 bg-muted/30">
   <div className="flex items-center justify-between border-b border-border/50 p-4">
     <h3 className="text-sm font-medium text-muted-foreground">Custom Fields</h3>

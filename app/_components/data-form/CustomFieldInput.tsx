@@ -1,6 +1,4 @@
-// app/_components/data-form/CustomFieldInput.tsx
 'use client'
-
 import { useState, useEffect, useCallback } from 'react'
 import { CustomField, isAdvancedField } from '@/lib/types/customField'
 import { Input } from '@/components/ui/input'
@@ -48,9 +46,7 @@ export function CustomFieldInput({
 
 
   const handleChange = useCallback((newValue: string | number) => {
-    // Just handle the change, no validation
     onChange(newValue)
-    // Clear any existing error when user types
     setLocalError('')
   }, [onChange])
 
@@ -195,7 +191,7 @@ export function CustomFieldInput({
   )
 }
 
-// Field Type Selector component
+
 interface FieldTypeSelectorProps {
   value: CustomField['type']
   onChange: (value: CustomField['type']) => void

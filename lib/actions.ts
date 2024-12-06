@@ -1,4 +1,3 @@
-// app/lib/actions.ts
 'use server'
 
 import { revalidatePath } from 'next/cache'
@@ -32,7 +31,7 @@ export async function getSubmissionStats(): Promise<SubmissionStats> {
   // Simulate network delay for demo
   await new Promise(resolve => setTimeout(resolve, 3000))
 
-  // Timeline data - group by month
+
   const timeline = mockData.reduce((acc, submission) => {
     const date = new Date(submission.createdAt)
       .toISOString()
@@ -47,7 +46,7 @@ export async function getSubmissionStats(): Promise<SubmissionStats> {
     return acc
   }, [] as SubmissionStats['timeline']).sort((a, b) => a.date.localeCompare(b.date))
 
-  // Age distribution
+
   const ageRanges = {
     '18-24': { min: 18, max: 24 },
     '25-34': { min: 25, max: 34 },
@@ -65,7 +64,7 @@ export async function getSubmissionStats(): Promise<SubmissionStats> {
     }
   })
 
-  // Custom field usage
+
   const customFieldCounts = mockData.flatMap(s => s.customFields)
     .reduce((acc, field) => {
       acc[field.type] = (acc[field.type] || 0) + 1
@@ -78,7 +77,7 @@ export async function getSubmissionStats(): Promise<SubmissionStats> {
     percentage: (count / mockData.length) * 100
   }))
 
-  // Calculate totals
+
   const lastMonth = new Date()
   lastMonth.setMonth(lastMonth.getMonth() - 1)
 
@@ -111,7 +110,7 @@ export async function createSubmission(submission: Submission) {
 
   await new Promise(resolve => setTimeout(resolve, 1000))
   
-  // Add to mock data
+
   mockData.unshift(submission)
   
   revalidatePath('/')
@@ -148,14 +147,12 @@ export async function createSubmission(submission: Submission) {
       )
     }
   
-    // Sort data
+
     filteredData.sort((a, b) => {
       const aValue = a[sortBy as keyof Submission]
       const bValue = b[sortBy as keyof Submission]
       
-      //convert dates to numbers for comparison
-
-
+ 
       if (sortDirection === 'desc') {
         return bValue > aValue ? 1 : -1
       }
@@ -186,7 +183,11 @@ export async function createSubmission(submission: Submission) {
     )
   }
 
-  export async function updateSubmission(updatedData: Submission) {
+  export type UpdateSubmissionResponse = {
+    success: boolean
+    error?: string
+  }
+  export async function updateSubmission(updatedData: Submission): Promise<UpdateSubmissionResponse> {
     
     const emailExists = await checkEmailExists(updatedData.email, updatedData.id)
   

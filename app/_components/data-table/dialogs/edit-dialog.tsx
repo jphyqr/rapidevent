@@ -29,12 +29,13 @@ import {  FieldTypeSelector } from "../../data-form/CustomFieldInput"
 import { useState } from "react"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
+import { UpdateSubmissionResponse } from "@/lib/actions"
 
 interface EditDialogProps {
  open: boolean
  onOpenChange: (open: boolean) => void
  submission: Submission
- onSubmit: (data: Submission) => Promise<void>
+ onSubmit: (data: Submission) => Promise<UpdateSubmissionResponse>
 }
 
 export function EditDialog({

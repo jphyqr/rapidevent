@@ -1,8 +1,7 @@
-// app/_components/data-table/columns.tsx
 'use client'
 
 import { type ColumnDef } from '@tanstack/react-table'
-import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react'
+import { ArrowDown, ArrowUp, ArrowUpDown, Edit2Icon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { type Submission } from '@/lib/types/customField'
 import { formatDistance } from 'date-fns'
@@ -175,10 +174,10 @@ interface ColumnOptions {
       return (
         <Button
           variant="ghost"
-          className="h-8 w-8 p-0"
+          className="h-4 w-4 p-0 opacity-50 hover:opacity-100"
           onClick={() => onEdit(row.original)}
         >
-          Edit
+          <Edit2Icon/>
         </Button>
       )
     }

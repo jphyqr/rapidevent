@@ -1,4 +1,3 @@
-// app/lib/types/customFields.ts
 
 export type BasicFieldType = 'text' | 'number' | 'email'
 
@@ -19,11 +18,11 @@ export interface CustomField {
   label: string
   type: FieldType
   value: string | number
-  isAdvanced: boolean // Used to disable advanced fields
+  isAdvanced: boolean 
   required?: boolean
 }
 
-// Type guard to check if a field type is advanced
+
 export const isAdvancedField = (type: FieldType): type is AdvancedFieldType => {
   const advancedTypes: AdvancedFieldType[] = [
     'file',

@@ -1,4 +1,3 @@
-// components/ui/number-input.tsx
 'use client'
 
 import * as React from "react"
@@ -28,7 +27,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
     prefix,
     suffix,
     decimalPlaces = 2,
-    thousandSeparator = false,
+ 
     className,
     disabled,
     ...props 
@@ -39,7 +38,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
     }, [])
 
     const [displayValue, setDisplayValue] = React.useState(() => formatValue(value))
-    const [isFocused, setIsFocused] = React.useState(false)
+
 
     React.useEffect(() => {
       setDisplayValue(formatValue(value))
@@ -116,13 +115,12 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
     }
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-      setIsFocused(true)
+    
       props.onFocus?.(e)
     }
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-      setIsFocused(false)
-      // Format the number on blur if needed
+     
       const currentValue = parseValue(displayValue)
       if (currentValue !== undefined && allowFloat) {
         setDisplayValue(currentValue.toFixed(decimalPlaces))
