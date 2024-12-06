@@ -156,7 +156,7 @@ export default function DataTableClient({ initialData }: DataTableProps) {
 
       const response = await updateSubmission(updatedData)
     
-      console.log(response)
+ 
       if (response.success) {
         setNewSubmissionId(updatedData.id)
         setSorting([{ id: 'updatedAt', desc: true }])
@@ -167,8 +167,9 @@ export default function DataTableClient({ initialData }: DataTableProps) {
 
       }
       return response
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      console.log(error)
+      
       // If error, revert the optimistic update by refetching
       fetchData()
       return { 

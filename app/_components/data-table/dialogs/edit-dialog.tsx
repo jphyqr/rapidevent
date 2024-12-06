@@ -108,17 +108,14 @@ export function EditDialog({
         </DialogHeader>
         <Form {...form}>
         <form onSubmit={form.handleSubmit((values) => {
-    console.log('Raw form values:', values);
-    console.log('Age type:', typeof values.age);
-    
+
     const updatedSubmission = {
         ...values,
         id: submission.id,
         customFields,
         updatedAt: new Date()
       }
-    console.log('Updated submission:', updatedSubmission);
-    
+
     handleSubmit(updatedSubmission);
   })}>
             <FormField
