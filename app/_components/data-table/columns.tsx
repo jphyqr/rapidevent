@@ -2,10 +2,11 @@
 'use client'
 
 import { type ColumnDef } from '@tanstack/react-table'
-import { ArrowUpDown } from 'lucide-react'
+import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { type Submission } from '@/lib/types/customField'
 import { formatDistance } from 'date-fns'
+import { cn } from '@/lib/utils'
 
 
 interface ColumnOptions {
@@ -15,13 +16,26 @@ interface ColumnOptions {
     {
     accessorKey: 'name',
     header: ({ column }) => {
+      const isSorted = column.getIsSorted()
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className={cn(
+            "flex items-center gap-1",
+            isSorted && "text-primary font-medium"
+          )}
         >
           Name
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          {isSorted ? (
+            isSorted === "asc" ? (
+              <ArrowUp className="h-4 w-4" />
+            ) : (
+              <ArrowDown className="h-4 w-4" />
+            )
+          ) : (
+            <ArrowUpDown className="h-4 w-4 opacity-50" />
+          )}
         </Button>
       )
     }
@@ -29,13 +43,26 @@ interface ColumnOptions {
   {
     accessorKey: 'email',
     header: ({ column }) => {
+      const isSorted = column.getIsSorted()
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className={cn(
+            "flex items-center gap-1",
+            isSorted && "text-primary font-medium"
+          )}
         >
           Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          {isSorted ? (
+            isSorted === "asc" ? (
+              <ArrowUp className="h-4 w-4" />
+            ) : (
+              <ArrowDown className="h-4 w-4" />
+            )
+          ) : (
+            <ArrowUpDown className="h-4 w-4 opacity-50" />
+          )}
         </Button>
       )
     }
@@ -43,20 +70,56 @@ interface ColumnOptions {
   {
     accessorKey: 'age',
     header: ({ column }) => {
+      const isSorted = column.getIsSorted()
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className={cn(
+            "flex items-center gap-1",
+            isSorted && "text-primary font-medium"
+          )}
         >
           Age
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          {isSorted ? (
+            isSorted === "asc" ? (
+              <ArrowUp className="h-4 w-4" />
+            ) : (
+              <ArrowDown className="h-4 w-4" />
+            )
+          ) : (
+            <ArrowUpDown className="h-4 w-4 opacity-50" />
+          )}
         </Button>
       )
     }
   },
   {
     accessorKey: 'customFields',
-    header: 'Custom Fields',
+    header: ({ column }) => {
+      const isSorted = column.getIsSorted()
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className={cn(
+            "flex items-center gap-1",
+            isSorted && "text-primary font-medium"
+          )}
+        >
+          Custom Fields
+          {isSorted ? (
+            isSorted === "asc" ? (
+              <ArrowUp className="h-4 w-4" />
+            ) : (
+              <ArrowDown className="h-4 w-4" />
+            )
+          ) : (
+            <ArrowUpDown className="h-4 w-4 opacity-50" />
+          )}
+        </Button>
+      )
+    },
     cell: ({ row }) => {
       const fields = row.original.customFields
       if (!fields.length) return <span className="text-muted-foreground">None</span>
@@ -74,18 +137,36 @@ interface ColumnOptions {
   {
     accessorKey: 'updatedAt',
     header: ({ column }) => {
+      const isSorted = column.getIsSorted()
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className={cn(
+            "flex items-center gap-1",
+            isSorted && "text-primary font-medium"
+          )}
         >
           Last Updated
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          {isSorted ? (
+            isSorted === "asc" ? (
+              <ArrowUp className="h-4 w-4" />
+            ) : (
+              <ArrowDown className="h-4 w-4" />
+            )
+          ) : (
+            <ArrowUpDown className="h-4 w-4 opacity-50" />
+          )}
         </Button>
       )
     },
     cell: ({ row }) => {
-      return formatDistance(new Date(row.original.updatedAt), new Date(), { addSuffix: true })
+      const date = new Date(row.original.updatedAt)
+      return (
+        <span className="text-muted-foreground text-sm">
+          {formatDistance(date, new Date(), { addSuffix: true })}
+        </span>
+      )
     }
   },
   {

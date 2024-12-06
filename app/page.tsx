@@ -1,26 +1,25 @@
-// app/page.tsx
+
 import { Suspense } from 'react'
 import  DataForm  from './_components/data-form'
 
-import { ChartSkeleton, TableSkeleton } from './_components/skeletons'
+import {  DataTableSkeleton, DataVisualizationSkeleton } from './_components/skeletons'
 import  SubmissionsTable  from './_components/data-table'
 import  SubmissionsChart  from './_components/data-chart'
 
 export default function Home() {
   return (
-    <div className="space-y-8">
-      {/* Form doesn't need suspense as it's client-side */}
-   
+    <div className="space-y-8  mb-96">
+
       
-      {/* Chart with suspense */}
-      <Suspense fallback={<ChartSkeleton />}>
+   
+      <Suspense fallback={<DataVisualizationSkeleton />}>
         <SubmissionsChart />
       </Suspense>
       
       <DataForm />
 
-      {/* Table with suspense */}
-      <Suspense fallback={<TableSkeleton />}>
+     
+      <Suspense fallback={<DataTableSkeleton />}>
         <SubmissionsTable />
       </Suspense>
     </div>

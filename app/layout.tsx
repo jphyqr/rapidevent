@@ -3,8 +3,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Nav } from '@/components/shared/nav'
-import { ThemeProvider } from '@/components/theme-provider'
+import { ThemeProviderClientWrapper } from './providers/ThemeProviderClientWrapper'
 import { SubmissionProvider } from './providers/SubmissionProvider'
+import { Toaster } from '@/components/ui/toaster'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -22,21 +23,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+      <ThemeProviderClientWrapper>
+
+    
            <SubmissionProvider>
         <div className="min-h-screen bg-background">
           <Nav />
           <main className="container mx-auto p-4 md:p-6 lg:p-8">
             {children}
+            <Toaster />
           </main>
         </div>
         </SubmissionProvider>
-      </ThemeProvider>
+        </ThemeProviderClientWrapper>
       </body>
     </html>
   )

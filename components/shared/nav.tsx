@@ -2,21 +2,20 @@
 
 import { Button } from "@/components/ui/button"
 import { CalendarDays } from "lucide-react"
-import { Logo } from "./logo"
 import { ModeToggle } from "./mode-toggle"
 import Link from "next/link"
 import Image from "next/image"
 
 export function Nav() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center w-full justify-between">
+    <header className="sticky top-0 z-50  w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className=" flex h-16 items-center  w-full justify-between">
         {/* Brand Section */}
 
 
         <Link href="/">
-        <div className="flex flex-1 items-center gap-2">
-          <div className="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-accent transition-colors">
+        <div className="flex flex-1 items-center  ml-2">
+          <div className="flex  items-center gap-2 rounded-lg py-2 hover:bg-accent transition-colors">
             <Image
                 src="/rapidevents.png"
                 alt="RapidEvents Logo"
@@ -52,7 +51,10 @@ export function Nav() {
         
           </div>
           {/* Theme Toggle */}
-          <ModeToggle />
+          <div className='mr-2'>
+          <ModeToggle  />
+          </div>
+        
        
       </div>
 

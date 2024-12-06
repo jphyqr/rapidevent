@@ -26,7 +26,8 @@ const generateCustomFields = (): CustomField[] => {
 }
 
 // Generate 50 mock records
-export const mockData: Submission[] = Array.from({ length: 50 }, (_, i) => ({
+
+export const mockData: Submission[] = Array.from({ length: 500 }, (_, i) => ({
   id: crypto.randomUUID(),
   name: `User ${i + 1}`,
   email: `user${i + 1}@example.com`,
@@ -35,3 +36,4 @@ export const mockData: Submission[] = Array.from({ length: 50 }, (_, i) => ({
   createdAt: new Date(Date.now() - Math.random() * 10000000000), // Random dates within past ~4 months
   updatedAt: new Date(Date.now() - Math.random() * 10000000000)
 }))
+

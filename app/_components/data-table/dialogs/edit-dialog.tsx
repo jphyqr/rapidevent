@@ -81,26 +81,23 @@ export function EditDialog({
     }
   })
 
- const handleSubmit = async (values: Submission) => {
-   try {
-
-    console.log('form values:', values)
-
-     await onSubmit(values)
-     onOpenChange(false)
-     toast({
-       title: "Success",
-       description: "Entry updated successfully"
-     })
-   } catch (error) {
-    console.log(error)
-     toast({
-       title: "Error", 
-       description: "Failed to update entry",
-       variant: "destructive"
-     })
-   }
- }
+  const handleSubmit = async (values: Submission) => {
+    const response = await onSubmit(values)
+    
+    if (response.success) {
+      onOpenChange(false)
+      toast({
+        title: "Success",
+        description: "Entry updated successfully"
+      })
+    } else {
+      toast({
+        title: "Error",
+        description: response.error,
+        variant: "destructive"
+      })
+    }
+  }
 
  return (
     <Dialog open={open} onOpenChange={onOpenChange}>

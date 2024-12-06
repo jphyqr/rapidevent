@@ -1,9 +1,8 @@
-// app/_components/data-chart/index.tsx
-import { getSubmissions } from '@/lib/actions'
+import {  getSubmissionStats } from '@/lib/actions'
 import { SubmissionsChartClient } from './client'
 
 export default async function SubmissionsChart() {
-  const data = await getSubmissions()
+  const stats = await getSubmissionStats()
   
-  return <SubmissionsChartClient data={data} />
+  return <SubmissionsChartClient stats={stats} />
 }

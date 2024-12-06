@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { isAdvancedField, type CustomField } from '@/lib/types/customField'
+import { isAdvancedField, Submission, type CustomField } from '@/lib/types/customField'
 import { formSchema, type FormValues } from './schema'
 import { createSubmission } from '@/lib/actions'
 import { CustomFieldInput, FieldTypeSelector } from './CustomFieldInput'
@@ -87,32 +87,47 @@ export default function DataForm() {
         setIsSubmitting(false)
         return
       }
-
-      const formData = new FormData()
-      formData.append('name', values.name)
-      formData.append('email', values.email)
-      formData.append('age', values.age.toString())
-      formData.append('customFields', JSON.stringify(customFields))
-
-      const response =await createSubmission(formData)
+  
+      // Create the new submission with proper structure
+      const newSubmission: Submission = {
+        id: crypto.randomUUID(), // This would normally come from backend
+        name: values.name,
+        email: values.email,
+        age: values.age,
+        customFields,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+  
+      const response = await createSubmission(newSubmission)
       
-      if(response.success){
+      if(response.success) {
         form.reset()
-        //just clear the values from the custom fields, but keep them
         
+        // Clear values but keep field structure
         const clearedCustomFieldValues = customFields.map(field => ({
           ...field,
           value: ''
         }))
         setCustomFields(clearedCustomFieldValues)
+        
+        // Set the new submission ID to trigger optimistic update
+        if (response.id)
         setNewSubmissionId(response.id)
+        
         toast({
           title: 'Success',
           description: 'Your entry has been submitted successfully',
           variant: 'default'
         })
+      } else {
+        toast({
+          title: 'Error',
+          description: response.error || 'Failed to submit your entry. Please try again.',
+          variant: 'destructive'
+        })
       }
-
+  
     } catch (error) {
       toast({
         title: 'Error',
@@ -259,9 +274,9 @@ export default function DataForm() {
       {[...customFields].reverse().map((field) => (
                        <motion.div
                        key={field.id}
-                       initial={{ backgroundColor: "hsl(var(--primary))", opacity: 0.1 }}
+                       initial={{ backgroundColor: "hsl(var(--primary))", opacity: 0.5 }}
                        animate={{ backgroundColor: "transparent", opacity: 1 }}
-                       transition={{ duration: 3 }}
+                       transition={{ duration: 2 }}
                        className="grid grid-cols-[1fr,120px,1fr,auto] items-center gap-3 p-3"
                      >
 

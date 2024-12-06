@@ -38,43 +38,21 @@ export function CustomFieldInput({
   // Validate value based on field type
   // Show error state immediately for required fields
   useEffect(() => {
-    if (field.required && (!field.value || field.value === '')) {
-      setLocalError('This field is required')
-    } else {
-      setLocalError('')
-    }
-  }, [field.required, field.value])
-
-  const validateValue = (value: string | number) => {
-    if (!value && field.required) {
-      return 'This field is required'
-    }
-
-    switch (field.type) {
-      case 'email':
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        if (value && !emailRegex.test(value.toString())) {
-          return 'Invalid email format'
-        }
-        break
-      case 'number':
-        if (value && isNaN(Number(value))) {
-          return 'Must be a valid number'
-        }
-        break
-    }
-    return ''
-  }
-
-  const handleChange = useCallback((newValue: string | number) => {
-    onChange(newValue)
-  }, [onChange])
-  // Handle incoming error prop
-  useEffect(() => {
     if (error) {
       setLocalError(error)
+    } else {
+      setLocalError('') // Clear local error when error prop is removed
     }
   }, [error])
+
+
+
+  const handleChange = useCallback((newValue: string | number) => {
+    // Just handle the change, no validation
+    onChange(newValue)
+    // Clear any existing error when user types
+    setLocalError('')
+  }, [onChange])
 
   const renderFieldInput = () => {
     const baseInputClasses = cn(
@@ -196,7 +174,7 @@ export function CustomFieldInput({
           )}
           {onRequiredChange && (
             <div className="flex items-center gap-2">
-              <Label htmlFor={`${field.id}-required`} className="text-sm">Required</Label>
+              {/* <Label htmlFor={`${field.id}-required`} className="text-sm">Required</Label> */}
               <Switch
                 id={`${field.id}-required`}
                 checked={field.required}
