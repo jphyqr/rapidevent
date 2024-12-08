@@ -162,8 +162,7 @@ This structure:
 - Jest and React Testing Library for reliable, user-centric tests
 
 ## Test Coverage
-coverage-report-Mr5CdFoJZy8SgYYANSoOJPPhB3u63b.png
-![Test Coverage Report](https://aqsqa2ypgvbzi7ri.public.blob.vercel-storage.com/)
+![Test Coverage Report](https://aqsqa2ypgvbzi7ri.public.blob.vercel-storage.com/coverage-report-Mr5CdFoJZy8SgYYANSoOJPPhB3u63b.png)
 *Current test coverage showing >80% coverage across statements, branches, and lines*
 
 ### Key Test Areas
