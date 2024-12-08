@@ -1,11 +1,10 @@
-// test-setup.tsx
 import { render } from "@testing-library/react"
 import React, { useState } from 'react'
 import { SubmissionContext } from '@/app/providers/SubmissionProvider'
 
 // Create mock with explicit type
 export const mockCreateSubmissionFn = jest.fn().mockImplementation((data) => {
-  console.log('Mock createSubmission called with:', data)
+
   return Promise.resolve({ success: true, id: '123' })
 })
 

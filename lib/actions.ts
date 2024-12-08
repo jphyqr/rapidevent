@@ -114,7 +114,7 @@ export async function createSubmission(submission: Submission) {
 
   mockData.unshift(submission)
   
- // revalidatePath('/')
+  revalidatePath('/')
   return { success: true, id: submission.id }
 }
   type GetSubmissionsParams = {
@@ -178,11 +178,7 @@ export async function createSubmission(submission: Submission) {
     }
   }
   export async function checkEmailExists(email: string, excludeId?: string) {
-    // Log the check
-    console.log('Checking email:', email)
-    console.log('Excluding ID:', excludeId)
-    console.log('Found matching emails:', mockData.filter(item => item.email === email))
-  
+   
     // Only return true if we find a DIFFERENT record with the same email
     return mockData.some(item => 
       item.email === email && item.id !== excludeId
@@ -194,9 +190,9 @@ export async function createSubmission(submission: Submission) {
   }
   export async function updateSubmission(updatedData: Submission): Promise<UpdateSubmissionResponse> {
    
-    console.log('Checking email:', updatedData.email, 'for ID:', updatedData.id)
+  
     const emailExists = await checkEmailExists(updatedData.email, updatedData.id)
-    console.log('Email exists check result:', emailExists)
+
     if (emailExists) {
       return { success: false, error: 'Email already exists' }
     }

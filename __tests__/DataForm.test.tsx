@@ -38,17 +38,11 @@ describe("DataForm", () => {
     await user.clear(ageInput)
     await user.type(ageInput, formData.age.toString())
   
-    // Log form values
-    console.log('Form values:', {
-      name: nameInput.value,
-      email: emailInput.value,
-      age: ageInput.value
-    })
-  
+ 
     await user.click(screen.getByRole("button", { name: /submit/i }))
   
     // Log mock calls
     await new Promise(resolve => setTimeout(resolve, 100))
-    console.log('Mock calls:', mockCreateSubmissionFn.mock.calls)
+
   })
 })

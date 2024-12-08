@@ -1,4 +1,3 @@
-// types/mock-actions.d.ts
 import { Submission } from '@/lib/types/customField'
 
 export interface MockHelpers {

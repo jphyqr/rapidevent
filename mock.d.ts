@@ -1,4 +1,3 @@
-// types/mocks.d.ts
 import { Submission } from '@/lib/types/customField'
 
 declare module '@/lib/actions' {

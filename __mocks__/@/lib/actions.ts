@@ -1,4 +1,3 @@
-// __mocks__/@/lib/actions.ts
 'use server'
 
 import { Submission, CustomField, FieldType } from '@/lib/types/customField'

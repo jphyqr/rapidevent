@@ -3,7 +3,6 @@
 name: RapidEvents
 target user: Community manager for ad hoc large event
 
-Based on the requirement I figured a usage for an app like this would be a flexible event check in app.  The requirement for large datasets+fast loading and no requirements on 
 
 Solution:
 A responsive single-page application for managing and visualizing tabular and statistical data. 
@@ -112,12 +111,23 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ```
 app/
-  page.tsx                      # Main SPA page
-  _components/                  # Route-level components
+  layout.tsx                    #)server)- wraps providers, toats, metadata
+  page.tsx                      # (server)Main SPA page: suspense boundaries
+  _components/                  # Route-level components - all server with client splits. simulate network delays for skeletons
     data-form/                 # Form submission components
     data-table/               # Table visualization components
     data-chart/              # Chart visualization components
   lib/                        # Utilities and configurations
+  providers/                 #useContext for app level state
+     SubmissionProvider.tsx #highlighting new added row in table from form submit
+     ThemePRoviderClientWrapper.tsx #dark mode
+  components/                 #shared components
+      shared/                #custom shared components
+        number-input.tsx     #reusable number input for currency, age
+      
+      ui/                     #shad cn ui components
+   hooks/                     #shared hooks
+   
     validations.ts           # Zod schemas
     types.ts                # TypeScript type definitions
 ```

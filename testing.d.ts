@@ -1,4 +1,3 @@
-// types/testing.d.ts
 import { Submission } from '@/lib/types/customField'
 
 export interface MockState {

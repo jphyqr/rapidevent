@@ -146,7 +146,7 @@ export default function DataTableClient({ initialData }: DataTableProps) {
 
   // Handle edit submission
   const handleEdit = async (updatedData: Submission) => {
-    console.log('handleEdit', updatedData)
+  
     try {
       // Optimistically update the UI first
       setData(currentData => 
