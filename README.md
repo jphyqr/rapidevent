@@ -8,11 +8,38 @@ Solution:
 A responsive single-page application for managing and visualizing tabular and statistical data. 
 
 
+# Design Decisions
+
+**Layout**
+went with 3 main components: Visualization, Form, and Grid.  This allows for a natural flow of data, action, results from action.  
+
+Our primary user is likely at a registration booth for an event, on a laptop, and has instant view of the static form, while knowing data is loading in the background.  
+
+I considered showing the form first on mobile as to not bury it, but I believe that the user looking at the view on mobile is likely the event manager, and would prefer a birds eye view of whats going on at the event, over submitting a new record. 
+
+**Data Visualization**
+Went for 'active event' type data over 'post event' (ie: custom field analysis) to support our primary users during the event.  Submissions over time, age distribution and total submissions gives the event manager useful information about who is in attendance so they can react to the situation
+
+**Submit Entry Form**
+Basic form as per requirements.  Allowed custom fields to support basic inputs as well as currency to show how the form may scale
+
+**Edit Entry Dialog**
+Concise version of the form, that persists required fields. New fields here would not be required as they wouldnt be in other records.
+
+**Grid**
+Standard data grid that fixes the users name and the edit button as most important fields.  Horizontal scrolling of internal fields For UX.  Search, pagination and filtering all handled server side to handle large data sets.  Applied auto sorting on updates and new records to provide instant feedback to registration manager.
+
+**Nice to haves**
+-Dark mode toggle
+-New Row added/updated highliting
+
 
 
 ## Running Locally
 
 We use --force because we’re working with the latest versions of Next.js 15 and React, which may have dependency conflicts with older packages. This ensures everything installs properly despite those conflicts.
+
+
 
 ```bash
 npm install --force
