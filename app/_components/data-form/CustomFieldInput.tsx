@@ -81,6 +81,7 @@ export function CustomFieldInput({
         return (
           <Input
             type="text"
+            data-testid={`custom-field-${field.id}-value`} 
             value={field.value || ''}
             onChange={(e) => handleChange(e.target.value)}
             className={baseInputClasses}
@@ -93,6 +94,7 @@ export function CustomFieldInput({
         return (
           <Input
             type="email"
+            data-testid={`custom-field-${field.id}-value`} 
             value={field.value || ''}
             onChange={(e) => handleChange(e.target.value)}
             className={baseInputClasses}
@@ -108,6 +110,7 @@ export function CustomFieldInput({
                 onChange={(newValue: number | undefined) => {
                   handleChange(newValue ?? '')  // Convert undefined to empty string
                 }}
+                data-testid={`custom-field-${field.id}-value`} 
                 min={0}
                 allowFloat={false}
                 className={cn(localError && "border-red-400/50")}
@@ -122,6 +125,7 @@ export function CustomFieldInput({
                 onChange={(newValue: number | undefined) => {
                   handleChange(newValue ?? '')
                 }}
+                data-testid={`custom-field-${field.id}-value`} 
                 min={0}
                 allowFloat={true}
                 decimalPlaces={2}
@@ -135,6 +139,7 @@ export function CustomFieldInput({
         return (
           <Input 
             disabled 
+            data-testid={`custom-field-${field.id}-value`} 
             value="Unsupported field type" 
             className={cn(baseInputClasses, "bg-muted/50")}
           />
@@ -152,7 +157,7 @@ export function CustomFieldInput({
       <Label className="text-sm font-medium ">
           {field.label}
           {field.required && (
-            <span className="ml-1 text-red-400/80">*</span>
+            <span data-testid='required-asteric' className="ml-1 text-red-400/80">*</span>
           )}
         </Label>
 
@@ -173,6 +178,7 @@ export function CustomFieldInput({
               {/* <Label htmlFor={`${field.id}-required`} className="text-sm">Required</Label> */}
               <Switch
                 id={`${field.id}-required`}
+                data-testid={`custom-field-${field.id}-required`}
                 checked={field.required}
                 onCheckedChange={onRequiredChange}
                 disabled={disabled}

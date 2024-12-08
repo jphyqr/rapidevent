@@ -146,6 +146,7 @@ export default function DataTableClient({ initialData }: DataTableProps) {
 
   // Handle edit submission
   const handleEdit = async (updatedData: Submission) => {
+    console.log('handleEdit', updatedData)
     try {
       // Optimistically update the UI first
       setData(currentData => 
@@ -244,7 +245,7 @@ export default function DataTableClient({ initialData }: DataTableProps) {
   isRefetching && "after:absolute after:inset-0 after:bg-white/50 after:backdrop-blur-sm"
 )}>
     {isRefetching && (
-    <div className="absolute top-2 right-2 z-10">
+    <div className="absolute top-0   right-20 z-10">
       <Badge variant="secondary">
         Syncing...
       </Badge>

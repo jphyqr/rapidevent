@@ -23,7 +23,7 @@ import {type  SubmissionStats } from '@/lib/actions'
 
     return (
         <div className="grid gap-4 md:grid-cols-2">
-        <Card className="col-span-2">
+        <Card className="md:col-span-2">
         <CardHeader>
           <CardTitle>Submissions Over Time</CardTitle>
         </CardHeader>

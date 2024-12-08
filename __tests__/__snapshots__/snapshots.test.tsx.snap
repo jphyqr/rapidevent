@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot Tests Form Structure matches empty form layout 1`] = `"<div class="rounded-xl border bg-card text-card-foreground border-none bg-gradient-to-b from-secondary/50 via-background to-background shadow-md"><div class="flex flex-col space-y-1.5 p-6"><div class="tracking-tight text-2xl font-semibold leading-tight text-primary">Submit Entry</div><div class="text-sm text-muted-foreground">Add a new submission with optional custom fields</div></div><div class="p-6 pt-0 space-y-6"><form novalidate="" class="space-y-6"><div class="grid gap-4 md:grid-cols-2"><div class="space-y-2"><label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium" for=":r0:-form-item">Name</label><input class="flex h-9 w-full rounded-md border border-input px-3 py-1 text-base transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm bg-card/50 shadow-sm" placeholder="Enter name" id="test-id" aria-describedby=":r0:-form-item-description" aria-invalid="test-id" value="" name="name"><div class="min-h-[20px]"></div></div><div class="space-y-2"><label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r1:-form-item">Email</label><input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" placeholder="Enter email" id="test-id" aria-describedby=":r1:-form-item-description" aria-invalid="test-id" type="email" value="" name="email"><div class="min-h-[20px]"></div></div><div class="space-y-2"><label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r2:-form-item">Age</label><div class="relative"><input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" data-testid="test-id" id="test-id" aria-describedby=":r2:-form-item-description" aria-invalid="test-id" inputmode="numeric" type="text" value=""></div><div class="min-h-[20px]"></div></div></div><div class="rounded-lg border border-border/50 bg-muted/30"><div class="flex items-center justify-between border-b border-border/50 p-4"><h3 class="text-sm font-medium text-muted-foreground">Custom Fields</h3><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input shadow-sm hover:text-accent-foreground rounded-md px-3 text-xs h-8 bg-background/50 hover:bg-background" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus mr-2 h-3 w-3"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>Add Field</button></div><div class="flex h-24 items-center justify-center text-sm text-muted-foreground">No custom fields added</div></div><div class="flex justify-end pt-4"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground shadow h-9 px-4 py-2 bg-primary/90 hover:bg-primary" type="submit">Submit</button></div></form></div></div>"`;
+
+exports[`Snapshot Tests Form Structure matches form with single custom field 1`] = `"<div class="rounded-xl border bg-card text-card-foreground border-none bg-gradient-to-b from-secondary/50 via-background to-background shadow-md"><div class="flex flex-col space-y-1.5 p-6"><div class="tracking-tight text-2xl font-semibold leading-tight text-primary">Submit Entry</div><div class="text-sm text-muted-foreground">Add a new submission with optional custom fields</div></div><div class="p-6 pt-0 space-y-6"><form novalidate="" class="space-y-6"><div class="grid gap-4 md:grid-cols-2"><div class="space-y-2"><label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium" for=":r3:-form-item">Name</label><input class="flex h-9 w-full rounded-md border border-input px-3 py-1 text-base transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm bg-card/50 shadow-sm" placeholder="Enter name" id="test-id" aria-describedby=":r3:-form-item-description" aria-invalid="test-id" value="" name="name"><div class="min-h-[20px]"></div></div><div class="space-y-2"><label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r4:-form-item">Email</label><input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" placeholder="Enter email" id="test-id" aria-describedby=":r4:-form-item-description" aria-invalid="test-id" type="email" value="" name="email"><div class="min-h-[20px]"></div></div><div class="space-y-2"><label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r5:-form-item">Age</label><div class="relative"><input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" data-testid="test-id" id="test-id" aria-describedby=":r5:-form-item-description" aria-invalid="test-id" inputmode="numeric" type="text" value=""></div><div class="min-h-[20px]"></div></div></div><div class="rounded-lg border border-border/50 bg-muted/30"><div class="flex items-center justify-between border-b border-border/50 p-4"><h3 class="text-sm font-medium text-muted-foreground">Custom Fields</h3><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input shadow-sm hover:text-accent-foreground rounded-md px-3 text-xs h-8 bg-background/50 hover:bg-background" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus mr-2 h-3 w-3"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>Add Field</button></div><div class="divide-y divide-border/50"><div class="grid grid-cols-[1fr,120px,1fr,auto] items-center gap-3 p-3" style="opacity: 0.507604086495121; background-color: transparent;"><input class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-8" placeholder="Field label" value="Field 1"><button type="button" role="combobox" aria-controls="radix-:r6:" aria-expanded="false" aria-autocomplete="none" dir="ltr" data-state="closed" class="flex w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&amp;>span]:line-clamp-1 h-8"><span style="pointer-events: none;">Text</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down h-4 w-4 opacity-50" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button><select aria-hidden="true" tabindex="-1" style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; word-wrap: normal;"><option value="text" selected="">Text</option><option value="number">Number</option><option value="email">Email</option><option value="currency">Currency</option><option value="file" disabled="">File Upload</option><option value="date" disabled="">Date/Time</option><option value="location" disabled="">Location</option></select><div class="relative"><div class="space-y-2"><div class="flex items-center justify-between"><label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium">Field 1</label><div class="flex items-center gap-2"></div></div><input class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-8 transition-colors" data-testid="test-id" placeholder="Enter field 1" type="text" value=""><div class="min-h-[20px]"></div></div></div><div class="flex items-center gap-2 ml-2"><button type="button" role="switch" aria-checked="false" data-state="unchecked" value="on" class="peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input h-4 w-7" id="test-id"><span data-state="unchecked" class="pointer-events-none block h-4 w-4 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"></span></button><input aria-hidden="true" style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px; width: 0px; height: 0px;" tabindex="-1" type="checkbox" value="on"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent rounded-md text-xs h-7 w-7 p-0 text-muted-foreground hover:text-destructive" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2 h-4 w-4"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" x2="10" y1="11" y2="17"></line><line x1="14" x2="14" y1="11" y2="17"></line></svg></button></div></div></div></div><div class="flex justify-end pt-4"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground shadow h-9 px-4 py-2 bg-primary/90 hover:bg-primary" type="submit">Submit</button></div></form></div></div>"`;
+
+exports[`Snapshot Tests Pagination API matches paginated response structure 1`] = `
+{
+  "items": Any<Array>,
+  "metadata": {
+    "currentPage": 1,
+    "hasNextPage": Any<Boolean>,
+    "hasPreviousPage": Any<Boolean>,
+    "pageSize": 2,
+    "totalItems": Any<Number>,
+    "totalPages": Any<Number>,
+  },
+}
+`;
+
+exports[`Snapshot Tests Stats API matches stats response structure 1`] = `
+{
+  "ageDistribution": [
+    {
+      "count": Any<Number>,
+      "percentage": Any<Number>,
+      "range": "18-24",
+    },
+    {
+      "count": Any<Number>,
+      "percentage": Any<Number>,
+      "range": "25-34",
+    },
+    {
+      "count": Any<Number>,
+      "percentage": Any<Number>,
+      "range": "35-44",
+    },
+    {
+      "count": Any<Number>,
+      "percentage": Any<Number>,
+      "range": "45-54",
+    },
+    {
+      "count": Any<Number>,
+      "percentage": Any<Number>,
+      "range": "55+",
+    },
+  ],
+  "customFieldUsage": [
+    {
+      "count": Any<Number>,
+      "percentage": Any<Number>,
+      "type": "text",
+    },
+    {
+      "count": Any<Number>,
+      "percentage": Any<Number>,
+      "type": "email",
+    },
+    {
+      "count": Any<Number>,
+      "percentage": Any<Number>,
+      "type": "number",
+    },
+  ],
+  "timeline": [
+    {
+      "count": Any<Number>,
+      "date": Any<String>,
+    },
+    {
+      "count": Any<Number>,
+      "date": Any<String>,
+    },
+    {
+      "count": Any<Number>,
+      "date": Any<String>,
+    },
+    {
+      "count": Any<Number>,
+      "date": Any<String>,
+    },
+    {
+      "count": Any<Number>,
+      "date": Any<String>,
+    },
+  ],
+  "totals": {
+    "averageAge": Any<Number>,
+    "lastMonthSubmissions": Any<Number>,
+    "totalSubmissions": Any<Number>,
+  },
+}
+`;

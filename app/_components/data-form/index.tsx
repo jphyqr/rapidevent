@@ -26,6 +26,7 @@ import { useToast } from '@/hooks/use-toast'
 import { useSubmission } from '@/app/providers/SubmissionProvider'
 import { NumberInput } from '@/components/shared/number-input'
 import { cn } from '@/lib/utils'
+import { v4 as uuidv4 } from 'uuid';
 
 
 export default function DataForm() {
@@ -34,7 +35,7 @@ export default function DataForm() {
   const { setNewSubmissionId } = useSubmission()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [customFields, setCustomFields] = useState<CustomField[]>([])
-
+ const [fieldErrors, setFieldErrors] = useState<Map<string, string>>(new Map())
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,34 +48,28 @@ export default function DataForm() {
 
   // Validate custom fields before submission
   const validateCustomFields = () => {
-    const errors: string[] = []
+    const fieldErrors = new Map<string, string>()
     customFields.forEach(field => {
       if (!field.label) {
-        errors.push(`Label is required for all custom fields`)
-      }
-      if (field.required && (!field.value || field.value === '')) {
-        errors.push(`${field.label || 'Field'} is required`)
-      }
-      if (field.type === 'email' && typeof field.value === 'string') {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        if (!emailRegex.test(field.value)) {
-          errors.push(`${field.label} must be a valid email`)
-        }
-      }
-      if (field.type === 'number' && isNaN(Number(field.value))) {
-        errors.push(`${field.label} must be a valid number`)
+        fieldErrors.set(field.id, 'Label is required')
+      } else if (field.required && (!field.value || field.value === '')) {
+        fieldErrors.set(field.id, 'Required')
+      } else if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value as string)) {
+        fieldErrors.set(field.id, 'Invalid email format')
+      } else if (field.type === 'number' && isNaN(Number(field.value))) {
+        fieldErrors.set(field.id, 'Invalid number')
       }
     })
-    return errors
+    return fieldErrors
   }
-
   const onSubmit = async (values: FormValues) => {
     try {
       setIsSubmitting(true)
+      const errors = validateCustomFields()
       
-      const customFieldErrors = validateCustomFields()
-      if (customFieldErrors.length > 0) {
-        customFieldErrors.forEach(error => {
+      if (errors.size > 0) {
+        setFieldErrors(errors)
+        errors.forEach((error) => {
           toast({
             title: 'Validation Error',
             description: error,
@@ -87,7 +82,7 @@ export default function DataForm() {
   
  
       const newSubmission: Submission = {
-        id: crypto.randomUUID(), // This would normally come from backend
+       id: uuidv4(), // This would normally come from backend
         name: values.name,
         email: values.email,
         age: values.age,
@@ -152,17 +147,20 @@ export default function DataForm() {
     setCustomFields(customFields.filter(field => field.id !== id))
   }
 
-  const updateCustomField = (
-    id: string,
-    updates: Partial<CustomField>
-  ) => {
+  const updateCustomField = (id: string, updates: Partial<CustomField>) => {
+    if ('value' in updates) {
+      setFieldErrors(prev => {
+        const next = new Map(prev)
+        next.delete(id)
+        return next
+      })
+    }
     setCustomFields(fields =>
       fields.map(field =>
         field.id === id ? { ...field, ...updates } : field
       )
     )
   }
-
   return (
     <Card className="border-none bg-gradient-to-b from-secondary/50 via-background to-background shadow-md">
               <CardHeader>
@@ -175,7 +173,7 @@ export default function DataForm() {
       </CardHeader>
       <CardContent className="space-y-6">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form noValidate onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             {/* Standard Fields */}
             <div className="grid gap-4 md:grid-cols-2">
               <FormField
@@ -223,12 +221,14 @@ export default function DataForm() {
               <FormField
                 control={form.control}
                 name="age"
+               
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Age</FormLabel>
                     <FormControl>
                     <NumberInput
           value={field.value}
+          data-testid="age-input" 
           onChange={field.onChange}
           min={0}
           max={120}
@@ -303,9 +303,7 @@ export default function DataForm() {
               onChange={(value) =>
                 updateCustomField(field.id, { value })
               }
-              error={field.required && (!field.value || field.value === '') 
-                ? 'Required' 
-                : undefined}
+              error={fieldErrors.get(field.id)}
               disabled={isSubmitting}
             />
             {field.required && (

@@ -31,8 +31,17 @@ const customFieldSchema = z.object({
 
 export const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email format"),
-  age: z.number().min(0, "Age must be a positive number"),
+  email: z
+  .string()
+  .email("Invalid email format")
+  .min(1, "Email is required"), // Covers empty string explicitly
+  age: z
+  .number({
+    required_error: "Age is required", // This will show instead of "Required"
+    invalid_type_error: "Age must be a number",
+  })
+  .min(0, "Age must be a positive number")
+  .max(120, "Age must be less than 120"),
   customFields: z.array(customFieldSchema)
 })
 

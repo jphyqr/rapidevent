@@ -139,6 +139,8 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
           {...props}
           ref={ref}
           type="text"
+          data-testid="number-input" // Add this line
+
           inputMode={allowFloat ? "decimal" : "numeric"}
           value={displayValue}
           onChange={handleChange}

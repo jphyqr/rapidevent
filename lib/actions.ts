@@ -33,6 +33,7 @@ export async function getSubmissionStats(): Promise<SubmissionStats> {
 
 
   const timeline = mockData.reduce((acc, submission) => {
+
     const date = new Date(submission.createdAt)
       .toISOString()
       .slice(0, 7) // YYYY-MM
@@ -113,7 +114,7 @@ export async function createSubmission(submission: Submission) {
 
   mockData.unshift(submission)
   
-  revalidatePath('/')
+ // revalidatePath('/')
   return { success: true, id: submission.id }
 }
   type GetSubmissionsParams = {
@@ -177,38 +178,38 @@ export async function createSubmission(submission: Submission) {
     }
   }
   export async function checkEmailExists(email: string, excludeId?: string) {
-    // Check if email exists in mockData, excluding the current record if updating
+    // Log the check
+    console.log('Checking email:', email)
+    console.log('Excluding ID:', excludeId)
+    console.log('Found matching emails:', mockData.filter(item => item.email === email))
+  
+    // Only return true if we find a DIFFERENT record with the same email
     return mockData.some(item => 
       item.email === email && item.id !== excludeId
     )
   }
-
   export type UpdateSubmissionResponse = {
     success: boolean
     error?: string
   }
   export async function updateSubmission(updatedData: Submission): Promise<UpdateSubmissionResponse> {
-    
+   
+    console.log('Checking email:', updatedData.email, 'for ID:', updatedData.id)
     const emailExists = await checkEmailExists(updatedData.email, updatedData.id)
-  
+    console.log('Email exists check result:', emailExists)
     if (emailExists) {
-      return { 
-        success: false, 
-        error: 'Email already exists' 
-      }
+      return { success: false, error: 'Email already exists' }
     }
-
-    
+  
     const index = mockData.findIndex(item => item.id === updatedData.id)
-    if (index !== -1) {
-      mockData[index] = updatedData
-      revalidatePath('/')
-      return { success: true }
+    
+    if (index === -1) {
+      return { success: false, error: 'Record not found' }
     }
     
-    return { 
-      success: false, 
-      error: 'Record not found' 
-    }
+    // Update mockData properly
+    mockData[index] = { ...updatedData }
+    revalidatePath('/')
+    return { success: true }
   }
   

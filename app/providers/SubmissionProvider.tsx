@@ -7,7 +7,7 @@ interface SubmissionContextType {
   setNewSubmissionId: (id: string | null) => void
 }
 
-const SubmissionContext = createContext<SubmissionContextType | undefined>(undefined)
+export const SubmissionContext = createContext<SubmissionContextType | undefined>(undefined)
 
 export function SubmissionProvider({ children }: { children: React.ReactNode }) {
   const [newSubmissionId, setNewSubmissionId] = useState<string | null>(null)

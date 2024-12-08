@@ -16,7 +16,7 @@ const generateCustomFields = (): CustomField[] => {
     .slice(0, numFields)
 
   return selectedFields.map(field => ({
-    id: crypto.randomUUID(),
+    id: `field-${field.label.toLowerCase().replace(/\s+/g, '-')}`,
     ...field,
     isAdvanced: false,
     required: false
@@ -26,7 +26,7 @@ const generateCustomFields = (): CustomField[] => {
 // Generate 50 mock records
 
 export const mockData: Submission[] = Array.from({ length: 500 }, (_, i) => ({
-  id: crypto.randomUUID(),
+  id: `submission-${i + 1}`,
   name: `User ${i + 1}`,
   email: `user${i + 1}@example.com`,
   age: 20 + Math.floor(Math.random() * 40), // Random age between 20-60
