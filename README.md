@@ -12,8 +12,10 @@ A responsive single-page application for managing and visualizing tabular and st
 
 ## Running Locally
 
+We use --force because we’re working with the latest versions of Next.js 15 and React, which may have dependency conflicts with older packages. This ensures everything installs properly despite those conflicts.
+
 ```bash
-npm install
+npm install --force
 npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -127,7 +129,7 @@ app/
       
       ui/                     #shad cn ui components
    hooks/                     #shared hooks
-   
+
     validations.ts           # Zod schemas
     types.ts                # TypeScript type definitions
 ```
