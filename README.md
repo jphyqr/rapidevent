@@ -163,7 +163,7 @@ This structure:
 
 ## Test Coverage
 
-![Test Coverage Report](coverage-report.png)
+![Test Coverage Report](./pubic/coverage-report.png)
 *Current test coverage showing >80% coverage across statements, branches, and lines*
 
 ### Key Test Areas
